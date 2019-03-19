@@ -8,8 +8,9 @@
           <div class="text-center">
             <%#= image_tag @user.avatar, class: "img-responsive img-rounded" %>
             <%= image_tag @user.avatar.url, class: "img-responsive img-rounded" if @user.avatar?  %>
-
+             <%= render partial: "shared/like", locals: {user: @user} %>
           </div>
+
         </div>
 
         <div class="col-md-9 col-sm-8">

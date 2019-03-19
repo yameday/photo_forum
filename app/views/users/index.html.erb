@@ -18,16 +18,8 @@
           <h4><%= user.name %></h4>
         <% end %>
 
-       
-<% if user != current_user %>
-  <% if current_user.liking?(user) %>
-    <!-- 會用 DELETE 動作導向 http://localhost:3000/followships/{user.id} -->
-    <%= link_to 'Unlike', favorite_path(user), method: :delete, class: "btn btn-link" %>
-  <% else %>
-    <!-- 會用 POST 動作導向 http://localhost:3000/followships?following_id={user.id} -->
-    <%= link_to 'Like', favorites_path(like_id: user), method: :post, class: "btn btn-default" %>
-  <% end %>
-<% end %>
+       <%= render partial: "shared/like", locals: {user: user} %>
+
       </div>
     <% end %>
 
