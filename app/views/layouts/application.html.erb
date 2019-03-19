@@ -29,7 +29,7 @@
           <ul class="pull-right text-right nav navbar-nav">
             <% if current_user %>
                 <li><p class="navbar-text">Hi, <%= current_user.email %></p></li>
-                <li><%= link_to 'Profile', user_path(current_user) %></li>
+                <li><%= link_to 'myPage', user_path(current_user) %></li>
                 <li><%= link_to('LOGOUT', destroy_user_session_path, method: :delete) %></li>
                 <li><%= link_to('ChangePassword', edit_user_registration_path) %></li>
             <% else %>
