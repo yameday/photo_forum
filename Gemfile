@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+gem 'rest-client'
+
 #font-awesome
 gem 'font-awesome-sass'
 
