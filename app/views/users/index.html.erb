@@ -1,1 +1,35 @@
-<h1>photo index</h1>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1>People List</h1>
+      </div>
+    </div>
+
+    <% @users.each do |user| %>
+      <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+
+        <%= link_to user_path(user) do %>
+          <!-- 可先利用 Placeholder 如 <img src="http://via.placeholder.com/128x128"> 產生圖片 -->
+          <%= image_tag(user.avatar.url , class: "img-rounded") if user.avatar? %>
+         
+        
+          <h4><%= user.name %></h4>
+        <% end %>
+
+       
+<% if user != current_user %>
+  <% if current_user.liking?(user) %>
+    <!-- 會用 DELETE 動作導向 http://localhost:3000/followships/{user.id} -->
+    <%= link_to 'Unlike', favorite_path(user), method: :delete, class: "btn btn-link" %>
+  <% else %>
+    <!-- 會用 POST 動作導向 http://localhost:3000/followships?following_id={user.id} -->
+    <%= link_to 'Like', favorites_path(like_id: user), method: :post, class: "btn btn-default" %>
+  <% end %>
+<% end %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
