@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def ranking
+    @users = User.order(favorites_count: :desc).limit(10)
+  end
+
   private
 
   def set_user
