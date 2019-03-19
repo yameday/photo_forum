@@ -9,7 +9,7 @@
       </li>
       
       <li role="presentation" class="active">
-        <%= link_to 'TOP100人氣餐廳', ranking_users_path %>
+        <%= link_to 'TOP100', ranking_users_path %>
       </li>
     </ul>
 
@@ -30,13 +30,13 @@
         <div class="ranking-item">
           <div class="col-md-3">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.image, class: "img-responsive center-block" %>
+              <%= image_tag user.avatar.url, class: "img-responsive center-block" %>
             <% end %>
           </div>
           <div class="col-md-9">
             <h4>
               <%= user.name %>
-              <span class="label label-default">收藏數：<%#= user.favorites_count %></span>
+              <span class="label label-default">收藏數：<%= user.favorites_count %></span>
             </h4>
             <p><%= truncate(user.intro, length: 200) %></p>
             <div>

@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     @users = User.order(favorites_count: :desc).limit(10)
   end
 
+  def count_favorites
+    self.favorites_count = self.favorites.size
+    self.save
+  end
+
   private
 
   def set_user

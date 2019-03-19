@@ -20,5 +20,32 @@ namespace :dev do
     end
   end
 
+  task fake_likes: :environment do
+    Favorite.destroy_all
+
+    User.all.each do |user|
+      20.times do 
+        user.favorites.create(user_id: User.all.sample.id)
+      end
+    end
+    puts "have created 400 fake follow"
+    
+end
+
+task fake_follow: :environment do
+    Favorite.destroy_all
+
+    User.all.each do |user|
+      favorites = User.all.sample(rand(2..22))
+      if favorites.include?(user)
+        favorites.delete(user)
+      end
+      for like in favorites
+        user.favorites.create!(like: like)
+      end
+    end
+    puts "create fake_follow"
+end
+
 
 end
