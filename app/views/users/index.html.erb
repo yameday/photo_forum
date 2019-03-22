@@ -36,7 +36,8 @@
           <h4><%= user.name %></h4>
         <% end %>
 
-       <%= render partial: "shared/like", locals: {user: user} %>
+       <%#= render partial: "shared/like", locals: {user: user} %>
+        <%= render partial: "shared/likes", locals: {user: user} %>
 
       </div>
     <% end %>
