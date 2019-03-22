@@ -24,9 +24,25 @@ class UsersController < ApplicationController
     @users = User.order(favorites_count: :desc).limit(10)
   end
 
-  def count_favorites
-    self.favorites_count = self.favorites.size
-    self.save
+  # POST /users/:id/favorite
+  def favorite
+    @user = User.find(params[:id])
+puts @user.id.to_s
+puts current_user.id.to_s
+
+    @user.favorites.create!(user: current_user, like_id: @user.id)
+    
+    redirect_back(fallback_location: root_path)  # 導回上一頁
+  end
+  
+  # POST /users/:id/unfavorite
+  def unfavorite
+    @user = User.find(params[:id])
+    
+    favorites = Favorite.where(user: @user, user: current_user)
+    favorites.destroy_all
+    
+    redirect_back(fallback_location: root_path)
   end
 
   private

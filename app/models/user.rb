@@ -7,10 +7,14 @@ class User < ApplicationRecord
   
   mount_uploader :avatar, AvatarUploader
   
-  has_many :favorites, dependent: :destroy
-  has_many :like, through: :favorites
+  has_many :favorites , dependent: :destroy
+  #has_many :like, through: :favorites, source: :user
 
   def liking?(user)
-    self.like.include?(user)
+    
+  end
+
+  def is_favorited?(user)
+    self.favorites.include?(user)
   end
 end

@@ -10,6 +10,12 @@ Rails.application.routes.draw do
       get :ranking
     end
 
+    member do
+      post :favorite
+      post :unfavorite
+    end
+
+
   end
    
   resources :favorites, only: [:create, :destroy]

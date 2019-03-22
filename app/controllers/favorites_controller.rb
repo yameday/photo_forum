@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
    def create
     # 需要設定前端的 link_to，在發出請求時送進 like_id
   @favorite = current_user.favorites.build(like_id: params[:like_id])
-
+  
     if @favorite.save
       flash[:notice] = "Successfully liked"
       redirect_back(fallback_location: root_path)

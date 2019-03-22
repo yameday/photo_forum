@@ -24,11 +24,12 @@ namespace :dev do
     Favorite.destroy_all
 
     User.all.each do |user|
-      20.times do 
-        user.favorites.create(user_id: User.all.sample.id)
+      rand(2..22).times do 
+        #@user.favorites.create!(user: current_user, like: @user)
+        user.favorites.create!(user_id: User.all.sample.id, like_id: User.all.sample.id)
       end
     end
-    puts "have created 400 fake follow"
+    puts "have created 400 fake likes"
     
 end
 
