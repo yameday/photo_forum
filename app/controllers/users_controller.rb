@@ -21,14 +21,12 @@ class UsersController < ApplicationController
   end
 
   def ranking
-    @users = User.order(favorites_count: :desc).limit(10)
+    @users = User.order(favorites_count: :desc).limit(100)
   end
 
   # POST /users/:id/favorite
   def favorite
     @user = User.find(params[:id])
-puts @user.id.to_s
-puts current_user.id.to_s
 
     @user.favorites.create!(user: current_user, like_id: @user.id)
     
