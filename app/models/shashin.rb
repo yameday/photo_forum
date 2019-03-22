@@ -1,0 +1,2 @@
+class Shashin < ApplicationRecord
+end
