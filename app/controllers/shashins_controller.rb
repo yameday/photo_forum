@@ -1,0 +1,2 @@
+class ShashinsController < ApplicationController
+end
