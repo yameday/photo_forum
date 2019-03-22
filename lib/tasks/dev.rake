@@ -48,5 +48,17 @@ task fake_follow: :environment do
     puts "create fake_follow"
 end
 
+task fake_send_mails: :environment do
+    @users = User.order(favorites_count: :desc).limit(100)
+
+    @users.all.each do |user|
+     # UserMailer.send_promote_code(user).deliver_now!
+      puts "send " + user.email
+    end
+    puts "end "
+end
+
+
+
 
 end
