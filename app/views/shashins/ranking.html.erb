@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+
+    <!-- 使用 Bootstrap components 的 Nav Tabs -->
+    <!-- https://getbootstrap.com/docs/3.3/components/#nav-tabs -->
+    <ul class="nav nav-tabs">
+      <li role="presentation">
+        <%= link_to '首頁', root_path %>
+      </li>
+      
+      <li role="presentation" class="active">
+        <%= link_to 'TOP100', ranking_shashins_path %>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <div class="page-header">
+        <h1>Top 100 </h1>
+      </div>
+
+      <% @rank100.each do |shashin| %>
+
+        <div class="ranking-item user-item text-center">
+          <div class="col-md-3">
+            <%= link_to user_path(shashin.id) do %>
+              <%= image_tag shashin.avatar.url, class: "img-responsive center-block" %>
+            <% end %>
+          </div>
+          <div class="col-md-9">
+            <h4>
+              <%= shashin.name %>
+              <span class="label label-default">收藏數：<%= shashin.favorites_count %></span>
+            </h4>
+            <div>
+              <%#= render partial: 'shared/likes', locals: { shashin: @shashin } %>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

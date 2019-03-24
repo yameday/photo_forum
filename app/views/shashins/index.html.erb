@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+
+    <!-- 使用 Bootstrap components 的 Nav Tabs -->
+    <!-- https://getbootstrap.com/docs/3.3/components/#nav-tabs -->
+    <ul class="nav nav-tabs">
+      <li role="presentation " class="active">
+        <%= link_to '首頁', root_path  %>
+      </li>
+      <li role="presentation">
+        <%= link_to 'TOP100', ranking_shashins_path %>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1>Shshin List</h1>
+      </div>
+    </div>
+
+     <%= render partial: "shared/shashin_list", locals: {shashins: @shashins} %>
+
+   
+
+  </div>
+</div>
