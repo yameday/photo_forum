@@ -7,14 +7,7 @@ class User < ApplicationRecord
   
   mount_uploader :avatar, AvatarUploader
   
-  has_many :favorites , dependent: :destroy
-  #has_many :like, through: :favorites, source: :user
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_shashins, through: :favorites, source: :shashin
 
-  def liking?(user)
-    
-  end
-
-  def is_favorited?(user)
-    self.favorites.include?(user)
-  end
 end
