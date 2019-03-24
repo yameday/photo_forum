@@ -1,0 +1,16 @@
+<% shashins.each do |shashin| %>
+      <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+
+        <%= link_to user_path(shashin.user_id) do %>
+          <!-- 可先利用 Placeholder 如 <img src="http://via.placeholder.com/128x128"> 產生圖片 -->
+          <%= image_tag(shashin.file_location , class: "img-rounded") if shashin.file_location? %>
+         
+        
+          <h4><%= shashin.title %></h4>
+        <% end %>
+
+       <%#= render partial: "shared/like", locals: {user: user} %>
+        <%= render partial: "shared/likes", locals: {shashin: shashin} %>
+
+      </div>
+    <% end %>
