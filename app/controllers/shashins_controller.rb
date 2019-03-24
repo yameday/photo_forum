@@ -28,13 +28,17 @@ class ShashinsController < ApplicationController
 
   def ranking
     #@shashins = Shashin.order(favorites_count: :desc).limit(100)
-
-    #@cities = Favorite.group(:user_id).order("count(*) desc limit 100" ).count
-    #@top100_ids = deep_hash_keys(@cities)
+    now = Time.current 
+    @cities = Favorite.where("updated_at BETWEEN ? AND ?", now.beginning_of_month, now.end_of_month) .group(:user_id).order("count(*) desc limit 100" ).count
+    @top100_ids = deep_hash_keys(@cities)
+    #puts @top100_ids.inspect
+    #puts 'top100_ids.inspect'
     #@rank100 = User.where(:id => @top100_ids)
-
-    @rank100 = User.order(favorites_count: :desc).limit(100)
-    puts @rank100.to_s
+    #@rank100 = User.find(@top100_ids, :order => "field(id, #{@top100_ids.join(',')})")
+    @rank100 = User.find(@top100_ids).index_by(&:id).slice(*@top100_ids).values
+    #@rank100 = User.order(favorites_count: :desc).limit(100)
+    #puts @rank100.inspect
+    
   end
 
   # POST /shashins/:id/favorite
