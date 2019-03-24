@@ -1,5 +1,5 @@
-<% if user.is_favorited?(current_user) %>
-  <%= link_to 'Unlike ' + user.favorites_count.to_s, unfavorite_user_path(user), method: :post, class: "btn btn-info" %>
+<% if shashin.is_favorited?(current_user) %>
+  <%= link_to 'Unlike ' + shashin.favorites_count.to_s, unfavorite_shashin_path(shashin), method: :post, class: "btn btn-info" %>
 <% else %>
-  <%= link_to 'Like '+ user.favorites_count.to_s, favorite_user_path(user), method: :post, class: "btn btn-primary" %>
+  <%= link_to 'Like '+ shashin.favorites_count.to_s, favorite_shashin_path(shashin), method: :post, class: "btn btn-primary" %>
 <% end %>

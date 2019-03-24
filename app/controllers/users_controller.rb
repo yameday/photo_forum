@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @favorited_shashins = @user.favorited_shashins
+    @shashin = Shashin.where(user_id: params[:id]).last
+    @shashins = Shashin.where(user_id: params[:id])
+    #@shashin= Shashin.find_by(user_id: params[:id])
   end
 
   def edit
@@ -16,32 +20,27 @@ class UsersController < ApplicationController
   end
 
   def update
+    
+    if user_params[:avatar]
+      
+      #puts user_params[:avatar][:filename]
+      @user.update(user_params)
+      #@shashin.create(title: user_params[:name],description: user_params[:intro],file_location: user_params[:avatar], user: current_user)
+      shashin = Shashin.new(
+        title: user_params[:name],
+        description: user_params[:intro],
+        file_location:  @user.avatar,
+        user_id: @user.id
+      )
+     
+      shashin.save!
+    
+    end
+    
     @user.update(user_params)
     redirect_to user_path(@user)
   end
 
-  def ranking
-    @users = User.order(favorites_count: :desc).limit(100)
-  end
-
-  # POST /users/:id/favorite
-  def favorite
-    @user = User.find(params[:id])
-
-    @user.favorites.create!(user: current_user, like_id: @user.id)
-    
-    redirect_back(fallback_location: root_path)  # 導回上一頁
-  end
-  
-  # POST /users/:id/unfavorite
-  def unfavorite
-    @user = User.find(params[:id])
-    
-    favorites = Favorite.where(user: @user, user: current_user)
-    favorites.destroy_all
-    
-    redirect_back(fallback_location: root_path)
-  end
 
   private
 
