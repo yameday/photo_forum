@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usage
 
-Things you may want to cover:
+### Git Clone Step
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ git clone https://github.com/yameday/photo_forum.git
+$ bundle install
+$ rails db:migrate
+$ rails dev:fake_user
+$ rails dev:fake_shashin
+$ rails dev:fake_likes
+```
