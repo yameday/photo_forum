@@ -9,7 +9,7 @@
       </li>
       
       <li role="presentation" class="active">
-        <%= link_to 'TOP100', ranking_users_path %>
+        <%= link_to 'TOP100', ranking_shashins_path %>
       </li>
     </ul>
 
@@ -24,25 +24,21 @@
         <h1>Top 100 </h1>
       </div>
 
-<!-- 有多寫ranking-item的class style-->
-      <% @users.each do |user| %>
+      <% @rank100.each do |shashin| %>
 
-        <div class="ranking-item">
+        <div class="ranking-item user-item text-center">
           <div class="col-md-3">
-            <%= link_to user_path(user) do %>
-              <%= image_tag user.avatar.url, class: "img-responsive center-block" %>
+            <%= link_to user_path(shashin.id) do %>
+              <%= image_tag shashin.avatar.url, class: "img-responsive center-block" %>
             <% end %>
           </div>
           <div class="col-md-9">
             <h4>
-              <%= user.name %>
-              <span class="label label-default">收藏數：<%= user.favorites_count %></span>
+              <%= shashin.name %>
+              <span class="label label-default">收藏數：<%= shashin.favorites_count %></span>
             </h4>
-            <p><%= truncate(user.intro, length: 200) %></p>
             <div>
-              <%= link_to 'Show', user_path(user), class: "btn btn-primary" %>
-              <%#= render partial: 'shared/like', locals: { user: user } %>
-              <%= render partial: 'shared/likes', locals: { user: user } %>
+              <%#= render partial: 'shared/likes', locals: { shashin: @shashin } %>
             </div>
           </div>
           <div class="clearfix"></div>

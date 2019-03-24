@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_094221) do
+ActiveRecord::Schema.define(version: 2019_03_23_162038) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "like_id"
+    t.integer "shashin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shashins", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "file_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "favorites_count", default: 0
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

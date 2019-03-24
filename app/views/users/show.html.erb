@@ -7,8 +7,10 @@
        <div class="col-md-3 col-sm-4">
           <div class="text-center">
             <%#= image_tag @user.avatar, class: "img-responsive img-rounded" %>
-            <%= image_tag @user.avatar.url, class: "img-responsive img-rounded" if @user.avatar?  %>
-             <%= render partial: "shared/likes", locals: {user: @user} %>
+            <% if @user.avatar? %>    
+                <%= image_tag @user.avatar.url, class: "img-responsive img-rounded"  %>
+                <%= render partial: "shared/likes", locals: {shashin: @shashin} if @shashin.file_location?%>
+            <% end %>
           </div>
 
         </div>
@@ -27,7 +29,7 @@
 
       <br>
 
-
+            <%= render partial: "shared/shashin_list", locals: {shashins: @shashins} %>
 
     </div>
   </div>

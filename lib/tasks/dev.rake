@@ -20,32 +20,36 @@ namespace :dev do
     end
   end
 
+  task fake_shashin: :environment do
+    Shashin.destroy_all
+    User.all.each do |user|
+      rand(20).times do
+
+      shashin = Shashin.new(
+          title: user.name,
+          description: user.intro,
+          user_id: user.id,
+          file_location: user.avatar
+      )
+     # puts FFaker::Avatar.image
+      shashin.save!
+
+      end
+    end
+    puts "create fake shashins"
+  end
+
   task fake_likes: :environment do
     Favorite.destroy_all
 
     User.all.each do |user|
       rand(2..22).times do 
-        #@user.favorites.create!(user: current_user, like: @user)
-        user.favorites.create!(user_id: User.all.sample.id, like_id: User.all.sample.id)
+        user.favorites.create!(shashin_id: Shashin.all.sample.id)
+        #user.favorites.create!(user_id: User.all.sample.id, like_id: User.all.sample.id)
       end
     end
     puts "have created 400 fake likes"
     
-end
-
-task fake_follow: :environment do
-    Favorite.destroy_all
-
-    User.all.each do |user|
-      favorites = User.all.sample(rand(2..22))
-      if favorites.include?(user)
-        favorites.delete(user)
-      end
-      for like in favorites
-        user.favorites.create!(like: like)
-      end
-    end
-    puts "create fake_follow"
 end
 
 task fake_send_mails: :environment do
