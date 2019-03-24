@@ -53,7 +53,12 @@ namespace :dev do
 end
 
 task fake_send_mails: :environment do
-    @users = User.order(favorites_count: :desc).limit(100)
+    #@users = User.order(favorites_count: :desc).limit(100)
+
+    now = Time.current 
+    @cities = Favorite.where("updated_at BETWEEN ? AND ?", now.prev_month.beginning_of_month, now.prev_month.end_of_month) .group(:user_id).order("count(*) desc limit 100" ).count
+    @top100_ids = deep_hash_keys(@cities)
+    @users = User.where(:id => @top100_ids)
 
     @users.all.each do |user|
      # UserMailer.send_promote_code(user).deliver_now!
